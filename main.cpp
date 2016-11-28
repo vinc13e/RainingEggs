@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
 // usar um ou dois botoes em x de teclas...por exemplo pause/resume
 // texturas (azul ceu - area jogo ?)
 // rectanglo -> cesto
-// bullets -> bolas coloridas (cor aleatoria)
+// bullets -> eggs (cor aleatoria)
 
+//center bucket
 //https://www.youtube.com/watch?v=SnkszRZPcvM

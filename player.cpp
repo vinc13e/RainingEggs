@@ -2,10 +2,15 @@
 #include <QDebug>
 #include <QGraphicsScene>
 #include <QApplication>
-#include "bullet.h"
+#include "egg.h"
+#include "game.h"
 
-Player::Player(QGraphicsItem *parent): QGraphicsRectItem(parent){
+extern Game * game;
 
+Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
+
+
+    setPixmap(QPixmap(":/images/bucket1.gif"));
 }
 
 void Player::keyPressEvent(QKeyEvent *event)
@@ -16,12 +21,14 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
     case Qt::Key_Left:
     {
+        if(!game->running) break;
         if(pos().x() > 10)
             setPos(x()-10, y());
         break;
     }
     case Qt::Key_Right:
     {
+        if(!game->running) break;
         if(pos().x() + 100 + 10 < 800) //100 player width, 10, step, 800 view size
             setPos(x()+10, y());
         break;
@@ -35,14 +42,12 @@ void Player::keyPressEvent(QKeyEvent *event)
         //        break;
 
     case Qt::Key_Space :
+    case Qt::Key_P :
     {
-        // TODO pause
-//        setPos(x(),y());
-//        Bullet * bullet = new Bullet();
-//        bullet->setPos(20, 0);
-//        scene()->addItem(bullet);
+        game->pause();
         break;
     }
+
     case Qt::Key_Q :
     case Qt::Key_Escape :
     {
@@ -54,6 +59,7 @@ void Player::keyPressEvent(QKeyEvent *event)
 
 void Player::spawn()
 {
-    Bullet * bullet = new Bullet();
-    scene()->addItem(bullet);
+    Egg * egg = new Egg();
+    egg->setScale(0.1);
+    scene()->addItem(egg);
 }

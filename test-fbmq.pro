@@ -14,18 +14,21 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     player.cpp \
-    bullet.cpp \
     game.cpp \
     score.cpp \
-    lifes.cpp
+    lifes.cpp \
+    egg.cpp
 
 HEADERS  += \
     player.h \
-    bullet.h \
     game.h \
     score.h \
-    lifes.h
+    lifes.h \
+    egg.h
 
 FORMS    +=
 
 CONFIG += c++11
+
+RESOURCES += \
+    resources.qrc

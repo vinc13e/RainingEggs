@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>background1.png</file>
+        <file>bucket1.gif</file>
+        <file>egg1.png</file>
+        <file>egg2.png</file>
+        <file>egg3.png</file>
+    </qresource>
+</RCC>

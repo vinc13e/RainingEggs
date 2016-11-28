@@ -11,11 +11,15 @@
 class Game: public QGraphicsView{
 public:
     Game(QWidget * parent=0);
+    void pause();
 
+    //TODO set private
+    bool running = false; //TODO starts false
     QGraphicsScene * scene;
     Player * player;
     Score * score;
     Lifes * lifes;
+    QTimer * timer;
 
 };
 
