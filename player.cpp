@@ -22,14 +22,14 @@ void Player::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Left:
     {
         if(!game->running) break;
-        if(pos().x() > 10)
+        if(pos().x() > 0)
             setPos(x()-10, y());
         break;
     }
     case Qt::Key_Right:
     {
         if(!game->running) break;
-        if(pos().x() + 100 + 10 < 800) //100 player width, 10, step, 800 view size
+        if(pos().x() + 100 + 20 < 800) //100 player width, 20, step, 800 view size
             setPos(x()+10, y());
         break;
     }

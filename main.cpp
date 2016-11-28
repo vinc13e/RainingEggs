@@ -26,9 +26,10 @@ int main(int argc, char *argv[])
 // botao para pause / resume
 // botao para iniciar objectos
 // usar um ou dois botoes em x de teclas...por exemplo pause/resume
-// texturas (azul ceu - area jogo ?)
-// rectanglo -> cesto
-// bullets -> eggs (cor aleatoria)
+// texturas (azul ceu - area jogo ?) --done
+// rectanglo -> cesto -- done
+// bullets -> eggs (cor aleatoria) -- done
+// audio
 
 //center bucket
 //https://www.youtube.com/watch?v=SnkszRZPcvM
