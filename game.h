@@ -11,10 +11,12 @@
 class Game: public QGraphicsView{
 public:
     Game(QWidget * parent=0);
-    void pause();
+    void start();
+    void pauseResume();
 
     //TODO set private
     bool running = false; //TODO starts false
+    bool paused = true;
     QGraphicsScene * scene;
     Player * player;
     Score * score;

@@ -9,9 +9,16 @@ extern Game * game;
 
 Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
 
-
+    this->installEventFilter(this);
     setPixmap(QPixmap(":/images/bucket1.gif"));
 }
+
+
+void Player::focusOutEvent(QFocusEvent* event){
+    //To fix focus losses caused by mouse events
+    this->setFocus();
+}
+
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
@@ -21,30 +28,32 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
     case Qt::Key_Left:
     {
-        if(!game->running) break;
-        if(pos().x() > 0)
+        if(!game->running || game->paused) break;
+        if(pos().x() > 0){
             setPos(x()-10, y());
+        }
         break;
     }
     case Qt::Key_Right:
     {
-        if(!game->running) break;
-        if(pos().x() + 100 + 20 < 800) //100 player width, 20, step, 800 view size
+        if(!game->running || game->paused) break;
+        if(pos().x() + 100 + 20 < 800){
             setPos(x()+10, y());
+        }
         break;
     }
-        //    case Qt::Key_Up:
-        //        setPos(x(), y()-10);
-        //        break;
-
-        //    case Qt::Key_Down:
-        //        setPos(x(), y()+10);
-        //        break;
+    case Qt::Key_Return :
+    case Qt::Key_Enter :
+    {
+        if(game->running) break;
+        game->start();
+        break;
+    }
 
     case Qt::Key_Space :
     case Qt::Key_P :
     {
-        game->pause();
+        game->pauseResume();
         break;
     }
 
@@ -52,6 +61,10 @@ void Player::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Escape :
     {
         qApp->quit();
+        break;
+    }
+    default:
+    {
         break;
     }
     }

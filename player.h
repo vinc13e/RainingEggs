@@ -12,6 +12,7 @@ class Player: public QObject, public QGraphicsPixmapItem
 public:
      Player(QGraphicsItem * parent=0);
     void keyPressEvent(QKeyEvent *event);
+    void focusOutEvent(QFocusEvent* event);
 public slots:
     void spawn();
 };

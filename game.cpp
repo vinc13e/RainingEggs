@@ -16,11 +16,11 @@ Game::Game(QWidget *parent){
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(800,600);
 
-
     Player *player = new Player();
     player->setScale(0.4);
     player->setPos(325,498); //TODO center
     player->setFlag(QGraphicsItem::ItemIsFocusable);
+
     player->setFocus();
     scene->addItem(player);
 
@@ -34,14 +34,20 @@ Game::Game(QWidget *parent){
     //spawn eggs
     timer = new QTimer();
     QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn()));
-    //timer->start(1000);
 
 }
 
-void Game::pause()
+void Game::start(){
+    running = true;
+    pauseResume(); //resume;
+    qDebug() << "running: " << running << endl;
+}
+
+void Game::pauseResume()
 {
+    if(!running) return;
     QList<QGraphicsItem *> items = scene->items();
-    if(running){
+    if(!paused){
         //Pause
         timer->stop(); // stop spawning new eggs;
 
@@ -65,5 +71,5 @@ void Game::pause()
         }
     }
 
-    running = !running;
+    paused = !paused;
 }
