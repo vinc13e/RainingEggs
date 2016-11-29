@@ -8,6 +8,8 @@ public:
     Lifes(QGraphicsItem * parent=0);
     void decrease();
     int getLifes();
+    void setLifes(int value);
+
 private:
     int lifes;
 };

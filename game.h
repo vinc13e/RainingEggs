@@ -7,12 +7,14 @@
 #include "player.h"
 #include "score.h"
 #include "lifes.h"
+#include "gamestatelabels.h"
 
 class Game: public QGraphicsView{
 public:
     Game(QWidget * parent=0);
     void start();
     void pauseResume();
+    void over();
 
     //TODO set private
     bool running = false; //TODO starts false
@@ -22,6 +24,7 @@ public:
     Score * score;
     Lifes * lifes;
     QTimer * timer;
+    GameStateLabels *systemLabels;
 
 };
 

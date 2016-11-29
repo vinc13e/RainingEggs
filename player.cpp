@@ -9,7 +9,6 @@ extern Game * game;
 
 Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
 
-    this->installEventFilter(this);
     setPixmap(QPixmap(":/images/bucket1.gif"));
 }
 

@@ -17,14 +17,16 @@ SOURCES += main.cpp \
     game.cpp \
     score.cpp \
     lifes.cpp \
-    egg.cpp
+    egg.cpp \
+    gamestatelabels.cpp
 
 HEADERS  += \
     player.h \
     game.h \
     score.h \
     lifes.h \
-    egg.h
+    egg.h \
+    gamestatelabels.h
 
 FORMS    +=
 

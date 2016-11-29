@@ -6,4 +6,7 @@
         <file>egg2.png</file>
         <file>egg3.png</file>
     </qresource>
+    <qresource prefix="/fonts">
+        <file>Cookies.ttf</file>
+    </qresource>
 </RCC>

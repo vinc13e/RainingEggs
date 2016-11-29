@@ -25,11 +25,21 @@ Game::Game(QWidget *parent){
     scene->addItem(player);
 
     score = new Score();
+    score->hide();
     scene->addItem(score);
 
     lifes = new Lifes();
+    lifes->hide();
     lifes->setPos(lifes->x(), lifes->y()+24);
     scene->addItem(lifes);
+
+
+    systemLabels = new GameStateLabels();
+    scene->addItem(systemLabels);
+    QTimer *labelsTimer = new QTimer();
+    QObject::connect(labelsTimer,SIGNAL(timeout()),systemLabels,SLOT(blink()));
+    labelsTimer->start(500);
+
 
     //spawn eggs
     timer = new QTimer();
@@ -39,9 +49,41 @@ Game::Game(QWidget *parent){
 
 void Game::start(){
     running = true;
+    score->setScore(0);
+    lifes->setLifes(2);
+    score->show();
+    lifes->show();
+    systemLabels->hide();
     pauseResume(); //resume;
     qDebug() << "running: " << running << endl;
 }
+
+void Game::over(){
+//    running = false;
+//    paused = true;
+
+    systemLabels->afterGame();
+    systemLabels->show();
+    score->hide();
+    lifes->hide();
+
+    pauseResume(); //Pause
+
+    //delete all Eggs
+    QList<QGraphicsItem *> items = scene->items();
+    foreach (QGraphicsItem *item, items) {
+        if (typeid(*item) == typeid(Egg)){
+            scene->removeItem(item);
+            delete item;
+            return;
+        }
+    }
+//    scene->update();
+//    paused = true;
+//    start();
+
+}
+
 
 void Game::pauseResume()
 {
