@@ -17,18 +17,3 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
-
-//TODO
-//tut 6 done
-// lifes <=0 game over
-// botao para iniciar jogada / reinicar apos game over
-// botao para pause / resume
-// botao para iniciar objectos
-// usar um ou dois botoes em x de teclas...por exemplo pause/resume
-// texturas (azul ceu - area jogo ?) --done
-// rectanglo -> cesto -- done
-// bullets -> eggs (cor aleatoria) -- done
-// audio
-
-//center bucket
-//https://www.youtube.com/watch?v=SnkszRZPcvM

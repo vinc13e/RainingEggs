@@ -9,4 +9,9 @@
     <qresource prefix="/fonts">
         <file>Cookies.ttf</file>
     </qresource>
+    <qresource prefix="/sounds">
+        <file>bgsound.mp3</file>
+        <file>gameover.mp3</file>
+        <file>pointWon.wav</file>
+    </qresource>
 </RCC>

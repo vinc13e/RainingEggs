@@ -4,6 +4,8 @@
 #include <QGraphicsView>
 #include <QWidget>
 #include <QGraphicsScene>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 #include "player.h"
 #include "score.h"
 #include "lifes.h"
@@ -43,6 +45,14 @@ public:
     GameStateLabels *getSystemLabels() const;
     void setSystemLabels(GameStateLabels *value);
 
+    QMediaPlayer *getPointLostSound() const;
+
+    QMediaPlayer *getPointWonSound() const;
+
+    QMediaPlayer *getPwp() const;
+
+    QMediaPlayer *getPlp() const;
+
 private:
     bool running = false;
     bool paused = true;
@@ -53,6 +63,15 @@ private:
     Lifes * lifes;
     QTimer * timer;
     GameStateLabels *systemLabels;
+
+    QMediaPlaylist * bgPlayList;
+    QMediaPlayer * bgSound;
+
+    QMediaPlaylist *gameoverPlayList;
+    QMediaPlayer *gameoverSound;
+
+    QMediaPlaylist *pointWonPlayList;
+    QMediaPlayer *pointWonSound;
 
 };
 

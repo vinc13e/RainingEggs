@@ -21,8 +21,6 @@ void Player::focusOutEvent(QFocusEvent* event){
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
-    qDebug() << "my player knows you press a key . . .";
-
     switch(event->key())
     {
     case Qt::Key_Left:

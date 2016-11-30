@@ -5,6 +5,7 @@
 #include <QGraphicsRectItem>
 #include <QKeyEvent>
 #include <QObject>
+#include <QMediaPlayer>
 
 class Player: public QObject, public QGraphicsPixmapItem
 {
@@ -15,5 +16,7 @@ public:
     void focusOutEvent(QFocusEvent* event);
 public slots:
     void spawn();
+private:
+    QMediaPlayer * eggsound;
 };
 #endif // PLAYER_H

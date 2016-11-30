@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <typeinfo>
 #include <QThread>
+#include <QMediaPlayer>
 
 Game::Game(QWidget *parent){
     scene = new QGraphicsScene();
@@ -44,6 +45,28 @@ Game::Game(QWidget *parent){
     //spawn eggs
     timer = new QTimer();
     QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn()));
+
+    // play background music
+    bgPlayList = new QMediaPlaylist();
+    bgPlayList->addMedia(QUrl("qrc:/sounds/bgsound.mp3"));
+    bgPlayList->setPlaybackMode(QMediaPlaylist::Sequential);
+    bgSound = new QMediaPlayer();
+    bgSound->setPlaylist(bgPlayList);
+    bgSound->play();
+
+
+    gameoverPlayList = new QMediaPlaylist();
+    gameoverPlayList->addMedia(QUrl("qrc:/sounds/gameover.mp3"));
+    gameoverPlayList->setPlaybackMode(QMediaPlaylist::Sequential);
+    gameoverSound = new QMediaPlayer();
+    gameoverSound->setPlaylist(gameoverPlayList);
+
+    pointWonPlayList = new QMediaPlaylist();
+    pointWonPlayList->addMedia(QUrl("qrc:/sounds/pointWon.wav"));
+    pointWonPlayList->setPlaybackMode(QMediaPlaylist::Sequential);
+    pointWonSound = new QMediaPlayer();
+    pointWonSound->setPlaylist(pointWonPlayList);
+
 }
 
 
@@ -56,12 +79,16 @@ void Game::start(){
     else{
         running = true;
         score->setScore(0);
-        lifes->setLifes(2);
+        lifes->setLifes(3);
         score->show();
         lifes->show();
         systemLabels->hide();
         pauseResume(); //resume;
     }
+
+    gameoverSound->stop();
+    bgSound->play();
+
 }
 
 void Game::over(){
@@ -76,7 +103,39 @@ void Game::over(){
 
     timer->stop(); // stop spawning new eggs;
 
+    // play game over sound
+    bgSound->stop();
+    gameoverSound->stop();
+    gameoverSound->play();
+
     return;
+}
+
+
+void Game::pauseResume()
+{
+    if(!running) return;
+    QList<QGraphicsItem *> items = scene->items();
+    if(!paused){
+        //Pause
+        timer->stop(); // stop spawning new eggs;
+        foreach (QGraphicsItem *item, items) { // pause all eggs;
+            if (typeid(*item) == typeid(Egg)){
+                qgraphicsitem_cast<Egg *>(item)->getTimer()->stop();
+            }
+        }
+
+    }
+    else{
+        //Resume
+        timer->start(1200);
+        foreach (QGraphicsItem *item, items) { // resume all eggs;
+            if (typeid(*item) == typeid(Egg)){
+                qgraphicsitem_cast<Egg *>(item)->getTimer()->start(50);
+            }
+        }
+    }
+    paused = !paused;
 }
 
 bool Game::isRunning() const
@@ -169,29 +228,14 @@ void Game::setSystemLabels(GameStateLabels *value)
     systemLabels = value;
 }
 
-
-void Game::pauseResume()
+QMediaPlayer *Game::getPwp() const
 {
-    if(!running) return;
-    QList<QGraphicsItem *> items = scene->items();
-    if(!paused){
-        //Pause
-        timer->stop(); // stop spawning new eggs;
-        foreach (QGraphicsItem *item, items) { // pause all eggs;
-            if (typeid(*item) == typeid(Egg)){
-                qgraphicsitem_cast<Egg *>(item)->getTimer()->stop();
-            }
-        }
-
-    }
-    else{
-        //Resume
-        timer->start(1000);
-        foreach (QGraphicsItem *item, items) { // resume all eggs;
-            if (typeid(*item) == typeid(Egg)){
-                qgraphicsitem_cast<Egg *>(item)->getTimer()->start(50);
-            }
-        }
-    }
-    paused = !paused;
+    return pointWonSound;
 }
+
+QMediaPlayer *Game::getPointWonSound() const
+{
+    return pointWonSound;
+}
+
+

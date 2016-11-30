@@ -7,7 +7,6 @@ extern Game * game;
 Lifes::Lifes(QGraphicsItem *parent): QGraphicsTextItem(parent){
     lifes = 3;
 
-    // draw the text
     setPlainText(QString("Lifes:  ") + QString::number(lifes));
     setDefaultTextColor(Qt::red);
     setFont(QFont("times",16));
