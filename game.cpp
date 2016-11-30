@@ -5,6 +5,7 @@
 #include <QFont>
 #include <QDebug>
 #include <typeinfo>
+#include <QThread>
 
 Game::Game(QWidget *parent){
     scene = new QGraphicsScene();
@@ -18,7 +19,7 @@ Game::Game(QWidget *parent){
 
     Player *player = new Player();
     player->setScale(0.4);
-    player->setPos(325,498); //TODO center
+    player->setPos(325,498);
     player->setFlag(QGraphicsItem::ItemIsFocusable);
 
     player->setFocus();
@@ -40,48 +41,132 @@ Game::Game(QWidget *parent){
     QObject::connect(labelsTimer,SIGNAL(timeout()),systemLabels,SLOT(blink()));
     labelsTimer->start(500);
 
-
     //spawn eggs
     timer = new QTimer();
     QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn()));
-
 }
 
+
 void Game::start(){
-    running = true;
-    score->setScore(0);
-    lifes->setLifes(2);
-    score->show();
-    lifes->show();
-    systemLabels->hide();
-    pauseResume(); //resume;
-    qDebug() << "running: " << running << endl;
+    if(gameover){
+        systemLabels->beforeGame();
+        gameover = !gameover;
+    }
+
+    else{
+        running = true;
+        score->setScore(0);
+        lifes->setLifes(2);
+        score->show();
+        lifes->show();
+        systemLabels->hide();
+        pauseResume(); //resume;
+    }
 }
 
 void Game::over(){
-//    running = false;
-//    paused = true;
+    running = false;
+    paused = true;
+    gameover = true;
 
     systemLabels->afterGame();
     systemLabels->show();
     score->hide();
     lifes->hide();
 
-    pauseResume(); //Pause
+    timer->stop(); // stop spawning new eggs;
 
-    //delete all Eggs
-    QList<QGraphicsItem *> items = scene->items();
-    foreach (QGraphicsItem *item, items) {
-        if (typeid(*item) == typeid(Egg)){
-            scene->removeItem(item);
-            delete item;
-            return;
-        }
-    }
-//    scene->update();
-//    paused = true;
-//    start();
+    return;
+}
 
+bool Game::isRunning() const
+{
+    return running;
+}
+
+void Game::setRunning(bool value)
+{
+    running = value;
+}
+
+bool Game::isPaused() const
+{
+    return paused;
+}
+
+void Game::setPaused(bool value)
+{
+    paused = value;
+}
+
+bool Game::isGameover() const
+{
+    return gameover;
+}
+
+void Game::setGameover(bool value)
+{
+    gameover = value;
+}
+
+QGraphicsScene *Game::getScene() const
+{
+    return scene;
+}
+
+void Game::setScene2(QGraphicsScene *value)
+{
+    scene = value;
+}
+
+Player *Game::getPlayer() const
+{
+    return player;
+}
+
+void Game::setPlayer(Player *value)
+{
+    player = value;
+}
+
+Score *Game::getScore() const
+{
+    return score;
+}
+
+void Game::setScore(Score *value)
+{
+    score = value;
+}
+
+Lifes *Game::getLifes() const
+{
+    return lifes;
+}
+
+void Game::setLifes(Lifes *value)
+{
+    lifes = value;
+}
+
+QTimer *Game::getTimer() const
+{
+    return timer;
+}
+
+void Game::setTimer(QTimer *value)
+{
+    timer = value;
+}
+
+GameStateLabels *Game::getSystemLabels() const
+{
+    return systemLabels;
+}
+
+void Game::setSystemLabels(GameStateLabels *value)
+{
+    systemLabels = value;
 }
 
 
@@ -92,11 +177,9 @@ void Game::pauseResume()
     if(!paused){
         //Pause
         timer->stop(); // stop spawning new eggs;
-
         foreach (QGraphicsItem *item, items) { // pause all eggs;
             if (typeid(*item) == typeid(Egg)){
-                qgraphicsitem_cast<Egg *>(item)->timer->stop();
-                qDebug() << "Egg ...." << endl;
+                qgraphicsitem_cast<Egg *>(item)->getTimer()->stop();
             }
         }
 
@@ -104,14 +187,11 @@ void Game::pauseResume()
     else{
         //Resume
         timer->start(1000);
-
         foreach (QGraphicsItem *item, items) { // resume all eggs;
             if (typeid(*item) == typeid(Egg)){
-                qgraphicsitem_cast<Egg *>(item)->timer->start(50);
-                qDebug() << "Egg ...." << endl;
+                qgraphicsitem_cast<Egg *>(item)->getTimer()->start(50);
             }
         }
     }
-
     paused = !paused;
 }

@@ -34,8 +34,8 @@ void Egg::move()
     QList<QGraphicsItem *> colliding_items = collidingItems();
     for (int i = 0, n = colliding_items.size(); i < n; ++i){
         if (typeid(*(colliding_items[i])) == typeid(Player)){
-            if(pos().y() >= 600-100){ //sizeo of player //so colisoes por cima contam ...
-                game->score->increase();
+            if(pos().y() >= 600-100){
+                game->getScore()->increase();
                 scene()->removeItem(this);
                 delete this;
                 return;
@@ -44,11 +44,19 @@ void Egg::move()
     }
 
     setPos(x(), y()+10);
-    if(pos().y() > 800 || pos().y() < 0){ //TODO get from global scope
-        //TODO draw smash egg on tis egg position y=600 -epsilon
-        game->lifes->decrease();
+    if(pos().y() > 800 || pos().y() < 0){
+        game->getLifes()->decrease();
         scene()->removeItem(this);
         delete this;
-        qDebug() << "bullet deleted" << endl;
     }
+}
+
+QTimer *Egg::getTimer() const
+{
+    return timer;
+}
+
+void Egg::setTimer(QTimer *value)
+{
+    timer = value;
 }

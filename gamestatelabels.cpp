@@ -1,6 +1,7 @@
 #include"gamestatelabels.h"
 #include <QFont>
 #include <QFontDatabase>
+#include <QThread>
 
 GameStateLabels::GameStateLabels(QGraphicsItem *parent): QGraphicsTextItem(parent){
 
@@ -12,7 +13,6 @@ GameStateLabels::GameStateLabels(QGraphicsItem *parent): QGraphicsTextItem(paren
 
 void GameStateLabels::beforeGame()
 {
-    // draw the text
     QFont cookies(family, 14);
     setPos(20,60);
     setHtml(before);
@@ -24,7 +24,7 @@ void GameStateLabels::beforeGame()
 void GameStateLabels::afterGame()
 {
     QFont cookies(family, 20);
-    setPos(290,250);
+    setPos(250,250);
     setHtml(after);
     setDefaultTextColor(Qt::red);
     setFont(cookies);

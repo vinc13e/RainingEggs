@@ -27,7 +27,7 @@ void Player::keyPressEvent(QKeyEvent *event)
     {
     case Qt::Key_Left:
     {
-        if(!game->running || game->paused) break;
+        if(!game->isRunning() || game->isPaused()) break;
         if(pos().x() > 0){
             setPos(x()-10, y());
         }
@@ -35,7 +35,7 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
     case Qt::Key_Right:
     {
-        if(!game->running || game->paused) break;
+        if(!game->isRunning() || game->isPaused()) break;
         if(pos().x() + 100 + 20 < 800){
             setPos(x()+10, y());
         }
@@ -44,7 +44,7 @@ void Player::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Return :
     case Qt::Key_Enter :
     {
-        if(game->running) break;
+        if(game->isRunning()) break;
         game->start();
         break;
     }

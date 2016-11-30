@@ -21,7 +21,8 @@ private:
                      "> Use left and rigth arrows to move the basket <br>"
                      "> Press Enter to start a new game";
 
-    QString after = "<big>GAME OVER !!</big> <br>";
+    QString after = "<big>GAME OVER !!</big> <br>"
+                    "<font size='1'>> Press Enter to return to menu</font>";
 
     QString family;
     unsigned int count=0;
