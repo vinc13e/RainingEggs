@@ -26,6 +26,7 @@ private:
     QString before = "<big>Welcome to <b>RainingEggs</b> !! </big><br>"
                      "> Try to catch all the Eggs <br>"
                      "> Use left and right arrows to move the basket <br>"
+                     "> Press space to pause/resume the game <br> "
                      "> Press Enter to start a new game";
 
     QString after = "<big>GAME OVER !!</big> <br>"
