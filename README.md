@@ -1,4 +1,15 @@
-# MiniGame
+# RainingEgg
 
-//TODO move src and resources to a dedicated folder.
-// update readme
+Basic 2D game developed in C++11 + Qt 
+
+V0.1
+
+## build:
+1 - cd RainingEgg
+
+2 - qmake
+
+3 - make
+
+## run
+./RainingEgg
