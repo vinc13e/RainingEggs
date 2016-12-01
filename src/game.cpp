@@ -11,7 +11,7 @@
 Game::Game(QWidget *parent){
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,800,600);
-    setBackgroundBrush(QBrush(QImage(":/images/background1.png")));
+    setBackgroundBrush(QBrush(QImage(":/images/images/background1.png")));
 
     setScene(scene);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -48,7 +48,7 @@ Game::Game(QWidget *parent){
 
     // play background music
     bgPlayList = new QMediaPlaylist();
-    bgPlayList->addMedia(QUrl("qrc:/sounds/bgsound.mp3"));
+    bgPlayList->addMedia(QUrl("qrc:/sounds/sounds/bgsound.mp3"));
     bgPlayList->setPlaybackMode(QMediaPlaylist::Sequential);
     bgSound = new QMediaPlayer();
     bgSound->setPlaylist(bgPlayList);
@@ -56,13 +56,13 @@ Game::Game(QWidget *parent){
 
 
     gameoverPlayList = new QMediaPlaylist();
-    gameoverPlayList->addMedia(QUrl("qrc:/sounds/gameover.mp3"));
+    gameoverPlayList->addMedia(QUrl("qrc:/sounds/sounds/gameover.mp3"));
     gameoverPlayList->setPlaybackMode(QMediaPlaylist::Sequential);
     gameoverSound = new QMediaPlayer();
     gameoverSound->setPlaylist(gameoverPlayList);
 
     pointWonPlayList = new QMediaPlaylist();
-    pointWonPlayList->addMedia(QUrl("qrc:/sounds/pointWon.wav"));
+    pointWonPlayList->addMedia(QUrl("qrc:/sounds/sounds/pointWon.wav"));
     pointWonPlayList->setPlaybackMode(QMediaPlaylist::Sequential);
     pointWonSound = new QMediaPlayer();
     pointWonSound->setPlaylist(pointWonPlayList);

@@ -9,7 +9,7 @@ extern Game * game;
 
 Player::Player(QGraphicsItem *parent): QGraphicsPixmapItem(parent){
 
-    setPixmap(QPixmap(":/images/bucket1.gif"));
+    setPixmap(QPixmap(":/images/images/bucket1.gif"));
 }
 
 

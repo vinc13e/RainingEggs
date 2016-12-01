@@ -9,29 +9,29 @@ QT       += core gui \
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = test-fbmq
+TARGET = RainingEggs
 TEMPLATE = app
 
 
-SOURCES += main.cpp \
-    player.cpp \
-    game.cpp \
-    score.cpp \
-    lifes.cpp \
-    egg.cpp \
-    gamestatelabels.cpp
+SOURCES += src/main.cpp \
+    src/player.cpp \
+    src/game.cpp \
+    src/score.cpp \
+    src/lifes.cpp \
+    src/egg.cpp \
+    src/gamestatelabels.cpp
 
 HEADERS  += \
-    player.h \
-    game.h \
-    score.h \
-    lifes.h \
-    egg.h \
-    gamestatelabels.h
+    src/player.h \
+    src/game.h \
+    src/score.h \
+    src/lifes.h \
+    src/egg.h \
+    src/gamestatelabels.h
 
 FORMS    +=
 
 CONFIG += c++11
 
 RESOURCES += \
-    resources.qrc
+    resources/resources.qrc

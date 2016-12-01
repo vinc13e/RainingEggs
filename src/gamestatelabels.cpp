@@ -5,7 +5,7 @@
 
 GameStateLabels::GameStateLabels(QGraphicsItem *parent): QGraphicsTextItem(parent){
 
-    int id = QFontDatabase::addApplicationFont(":/fonts/Cookies.ttf");
+    int id = QFontDatabase::addApplicationFont(":/fonts/fonts/Cookies.ttf");
     family = QFontDatabase::applicationFontFamilies(id).at(0);
 
     beforeGame();

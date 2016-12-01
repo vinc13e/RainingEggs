@@ -13,7 +13,7 @@ extern Game * game;
 Egg::Egg(): QObject(), QGraphicsPixmapItem(){
     //set randon type/color of egg
     int egg = (rand() % 3) + 1;
-    auto file = QString(":/images/egg%1.png").arg(egg);
+    auto file = QString(":/images/images/egg%1.png").arg(egg);
 
     setPixmap(QPixmap(file));
 

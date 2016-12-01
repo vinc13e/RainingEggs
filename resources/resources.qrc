@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>images/background1.png</file>
+        <file>images/bucket1.gif</file>
+        <file>images/egg1.png</file>
+        <file>images/egg2.png</file>
+        <file>images/egg3.png</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file>fonts/Cookies.ttf</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file>sounds/bgsound.mp3</file>
+        <file>sounds/gameover.mp3</file>
+        <file>sounds/pointWon.wav</file>
+    </qresource>
+</RCC>
