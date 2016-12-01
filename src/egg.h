@@ -1,3 +1,10 @@
+/*
+ * RainingEggs: Mini 2D game
+ *
+ * Copyright (C) 2016 Vicente Fernandes
+ * vinc13e@gmail.com
+ */
+
 #ifndef EGG_H
 #define EGG_H
 #include <QGraphicsPixmapItem>

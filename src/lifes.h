@@ -1,3 +1,10 @@
+/*
+ * RainingEggs: Mini 2D game
+ *
+ * Copyright (C) 2016 Vicente Fernandes
+ * vinc13e@gmail.com
+ */
+
 #ifndef LIFES_H
 #define LIFES_H
 
